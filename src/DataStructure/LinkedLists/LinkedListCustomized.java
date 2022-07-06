@@ -214,7 +214,7 @@ public class LinkedListCustomized {
         else if (head.getValue() == value) {
             pop_front();
         } else {
-
+            System.out.println();
             Node current = head.next;
             Node prev = head;
             while (current.getValue() != value) {

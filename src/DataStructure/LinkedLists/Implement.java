@@ -1,7 +1,11 @@
 package DataStructure.LinkedLists;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Implement {
     public static void main(String[] args) {
+        LinkedList<Integer> l = new LinkedList<>();
         LinkedListCustomized list = new LinkedListCustomized();
         list.push_front(1);
         list.push_front(2);

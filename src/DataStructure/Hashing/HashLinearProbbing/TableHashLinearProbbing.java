@@ -53,7 +53,7 @@ public class TableHashLinearProbbing {
                     return;
                 }
 
-                // 2. The counter is not Null but have the Same Key ; UPDATE
+                // 2. The counter is not Null but have the Same Key , UPDATE
                 if (keys[counter].equals(key)) {
                     values[counter] = value;
                     return;
@@ -78,6 +78,7 @@ public class TableHashLinearProbbing {
     }
 
     public boolean contains(String key) {
+
         return !get(key).equals("Not Found");
     }
 
@@ -103,7 +104,16 @@ public class TableHashLinearProbbing {
             System.out.println();
             items++;
         }
-        System.out.println("The Number Of Items in HashTable : "+items);
+        System.out.println("The Number Of Items in HashTable : " + items);
     }
 
+
+    public void theMechanism(){
+        System.out.println("""
+                The Magic with Hash Function
+                Insert : you have the hash(i) ===> position ===> insert
+                Delete : you have the hash(i) ===> position ===> delete
+                Search : you have the hash(i) ===> position ===> if exists ===> true  , else ===> false ...
+                   \s""");
+    }
 }

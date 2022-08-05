@@ -1,7 +1,6 @@
 package DataStructure.Gaph.AdjacencyList;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 public class GraphList {
     private int V;
@@ -30,7 +29,7 @@ public class GraphList {
             System.out.print("head");
             for (int j = 0; j < adjList.get(i).size(); j++) {
                 System.out.print(" -> "
-                        + adjList.get(i).get(j));
+                                 + adjList.get(i).get(j));
             }
             System.out.println();
         }
@@ -59,6 +58,58 @@ public class GraphList {
         }
         return false;
     }
+
+    public String BFS(int start) {
+        int s= start;
+        // Space Complexity : O(V)
+        // Time Complexity : O(V + E)
+
+        StringBuilder res = new StringBuilder();
+        Set<Integer> visited = new HashSet<>(V);
+        Queue<Integer> queue = new LinkedList<>();
+        // Insert Start V to Queue
+        queue.offer(s);
+        visited.add(s);
+        while (!queue.isEmpty()) {
+            s = queue.poll();
+            res.append(s).append("  -  ");
+            LinkedList<Integer> adjacent = adjList.get(s);
+            for (int v : adjacent) {
+                if (!visited.contains(v) && !queue.contains(v)) {
+                    queue.offer(v);
+                    visited.add(v);
+                }
+            }
+        }
+        return "BFS from : "+start+" ===> "+res.toString();
+    }
+
+//
+//    public String BFS(int start, int end) {
+//
+//        StringBuilder res = new StringBuilder();
+//        Set<Integer> visited = new HashSet<>(V);
+//        Queue<Integer> queue = new LinkedList<>();
+//        // Insert Start V to Queue
+//        queue.offer(start);
+//        visited.add(start);
+//        while (!queue.isEmpty()) {
+//            start = queue.poll();
+//            if (start == end) {
+//                break;
+//            }
+//            res.append(start).append("  -  ");
+//            LinkedList<Integer> adj = adjList.get(start);
+//            for (int v : adj) {
+//                if (!visited.contains(v) && !queue.contains(v)) {
+//                    queue.offer(v);
+//                    visited.add(v);
+//                }
+//            }
+//        }
+//        return "BFS from : "+start+" to : "+end+" is : "+res.toString();
+//    }
+
 }
 
 

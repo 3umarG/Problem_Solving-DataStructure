@@ -1,5 +1,9 @@
 package DataStructure.Gaph.Matrix;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class GraphMatrix {
     private int vertices;
     private int[][] matrix;
@@ -59,6 +63,49 @@ public class GraphMatrix {
         System.out.println("CONS :");
         System.out.println("1-Consumes more Space : O(V*V)");
         System.out.println("2-Adding a Vertex OR Update need to Update all Connected Vertices");
+    }
+
+    public String BFS(int start){
+//        Time Complexity: O(N*N)
+//        Auxiliary Space: O(N)
+
+        int s = start;
+        StringBuilder sb = new StringBuilder();
+        HashSet<Integer> visited = new HashSet<>();
+        Queue<Integer> q = new LinkedList<>();
+
+        q.offer(s);
+        visited.add(s);
+
+        while (!q.isEmpty()){
+            s = q.poll();
+            sb.append(s).append("  -  ");
+            for (int i=0;i<vertices;i++){
+                if (matrix[s][i]==1 && !visited.contains(i) && !q.contains(i)){
+                    q.add(i);
+                    visited.add(i);
+                }
+
+            }
+        }
+
+        return "BFS from : "+start+" ===> "+sb.toString();
+    }
+
+    private void DFS(int start , HashSet<Integer> visited){
+        visited.add(start);
+        System.out.print(start+" --> ");
+        for (int i=0;i<vertices;i++){
+            if (!visited.contains(i) && matrix[start][i]==1){
+                DFS(i,visited);
+            }
+        }
+    }
+
+    public void DFSRecursive(int start){
+        HashSet<Integer> visited = new HashSet<>();
+        System.out.print("DFS from "+start+" : ");
+        DFS(start,visited);
     }
 
 }

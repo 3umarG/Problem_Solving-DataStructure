@@ -84,31 +84,66 @@ public class GraphList {
         return "BFS from : "+start+" ===> "+res.toString();
     }
 
+    public void DFSRecursive(int start){
+//        Complexity Analysis:
 //
-//    public String BFS(int start, int end) {
-//
-//        StringBuilder res = new StringBuilder();
-//        Set<Integer> visited = new HashSet<>(V);
-//        Queue<Integer> queue = new LinkedList<>();
-//        // Insert Start V to Queue
-//        queue.offer(start);
-//        visited.add(start);
-//        while (!queue.isEmpty()) {
-//            start = queue.poll();
-//            if (start == end) {
-//                break;
-//            }
-//            res.append(start).append("  -  ");
-//            LinkedList<Integer> adj = adjList.get(start);
-//            for (int v : adj) {
-//                if (!visited.contains(v) && !queue.contains(v)) {
-//                    queue.offer(v);
-//                    visited.add(v);
-//                }
-//            }
-//        }
-//        return "BFS from : "+start+" to : "+end+" is : "+res.toString();
-//    }
+//        Time complexity: O(V + E), where V is the number of vertices and E is the number of edges in the graph.
+//        Space Complexity: O(V), since an extra visited array of size V is required.
+
+
+        HashSet<Integer> visited = new HashSet<>();
+        System.out.print("DFS from : "+start+" : ");
+        DFS(start,visited);
+    }
+
+    private void DFS(int s , HashSet<Integer> visited){
+        visited.add(s);
+        System.out.print(s+" --> ");
+        LinkedList<Integer> adj = adjList.get(s);
+        for(int n :adj){
+            if (!visited.contains(n)){
+                DFS(n,visited);
+            }
+        }
+    }
+
+
+    public void DFSRecursiveAll(int start){
+        // To Solve the Problem of Not Connected Graphs
+
+        HashSet<Integer> visited = new HashSet<>();
+        System.out.print("DFS from : "+start+" : ");
+        for (int i=0;i<V;i++){
+            DFS(i,visited);
+        }
+    }
+
+    public void printShortestDistance(int s, int dest) {
+        // predecessor[i] array stores predecessor of
+        // i and distance array stores distance of i
+        // from s
+        int[] pred = new int[V];
+        int[] dist = new int[V];
+
+
+        // LinkedList to store path
+        LinkedList<Integer> path = new LinkedList<Integer>();
+        int crawl = dest;
+        path.add(crawl);
+        while (pred[crawl] != -1) {
+            path.add(pred[crawl]);
+            crawl = pred[crawl];
+        }
+
+        // Print distance
+        System.out.println("Shortest path length is : " + dist[dest]);
+
+        // Print path
+        System.out.println("Path is ::");
+        for (int i = path.size() - 1; i >= 0; i--) {
+            System.out.print(path.get(i) + " ");
+        }
+    }
 
 }
 

@@ -3,6 +3,7 @@ package DataStructure.Gaph.Matrix;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class GraphMatrix {
     private int vertices;
@@ -106,6 +107,26 @@ public class GraphMatrix {
         HashSet<Integer> visited = new HashSet<>();
         System.out.print("DFS from "+start+" : ");
         DFS(start,visited);
+    }
+
+    public void DFSIterative(int start){
+        Stack<Integer> stack = new Stack<>();
+        HashSet<Integer> visited = new HashSet<>();
+        stack.push(start);
+        System.out.print("DFS from : "+start+" : ");
+        while (!stack.isEmpty()){
+            int s = stack.pop();
+            if (visited.contains(s)){
+                continue;
+            }
+            System.out.print(s+" --> ");
+            visited.add(s);
+            for (int i=0;i<vertices;i++){
+                if (matrix[s][i]==1 && !stack.contains(i) ){
+                    stack.push(i);
+                }
+            }
+        }
     }
 
 }

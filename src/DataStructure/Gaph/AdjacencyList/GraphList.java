@@ -107,7 +107,6 @@ public class GraphList {
         }
     }
 
-
     public void DFSRecursiveAll(int start){
         // To Solve the Problem of Not Connected Graphs
 
@@ -118,30 +117,27 @@ public class GraphList {
         }
     }
 
-    public void printShortestDistance(int s, int dest) {
-        // predecessor[i] array stores predecessor of
-        // i and distance array stores distance of i
-        // from s
-        int[] pred = new int[V];
-        int[] dist = new int[V];
 
 
-        // LinkedList to store path
-        LinkedList<Integer> path = new LinkedList<Integer>();
-        int crawl = dest;
-        path.add(crawl);
-        while (pred[crawl] != -1) {
-            path.add(pred[crawl]);
-            crawl = pred[crawl];
-        }
 
-        // Print distance
-        System.out.println("Shortest path length is : " + dist[dest]);
-
-        // Print path
-        System.out.println("Path is ::");
-        for (int i = path.size() - 1; i >= 0; i--) {
-            System.out.print(path.get(i) + " ");
+    public void DFSIterative(int start){
+        HashSet<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+        stack.push(start);
+        System.out.print("DFS Iterative from : "+start+" : ");
+        while (!stack.isEmpty()){
+            int s = stack.pop();
+            if (visited.contains(s)){
+                continue;
+            }
+            visited.add(s);
+            System.out.print(s+" --> ");
+            LinkedList<Integer> adj = adjList.get(s);
+            for (int a:adj){
+                if (!visited.contains(a) && !stack.contains(a)){
+                    stack.add(a);
+                }
+            }
         }
     }
 

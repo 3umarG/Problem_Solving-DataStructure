@@ -47,8 +47,11 @@ public class Main {
         System.out.println("BFS : ");
         System.out.println(G.BFS(1));
 
-        System.out.println("DFS : ");
+        System.out.println("DFS Recursive : ");
         G.DFSRecursive(0);
+        System.out.println();
+        System.out.println("DFS Iterative : ");
+        G.DFSIterative(0);
 
     }
 }

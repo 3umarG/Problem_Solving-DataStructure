@@ -63,9 +63,10 @@ public class Main {
         G.add(4,3);
 
         G.DFSRecursive(0);
+        System.out.println();
+        G.DFSIterative(0);
 
         G.pros();
-        G.printShortestDistance(2,6);
     }
 
 

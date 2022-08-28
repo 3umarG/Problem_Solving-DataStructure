@@ -117,9 +117,6 @@ public class GraphList {
         }
     }
 
-
-
-
     public void DFSIterative(int start){
         HashSet<Integer> visited = new HashSet<>();
         Stack<Integer> stack = new Stack<>();
@@ -134,6 +131,7 @@ public class GraphList {
             System.out.print(s+" --> ");
             LinkedList<Integer> adj = adjList.get(s);
             for (int a:adj){
+                // Not Visited & Not Contained in Stack ...
                 if (!visited.contains(a) && !stack.contains(a)){
                     stack.add(a);
                 }

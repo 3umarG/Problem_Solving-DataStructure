@@ -7,7 +7,6 @@ public class IfPath {
         int[][] edges1 = {{0, 1}, {0, 2}, {3, 5}, {5, 4}, {4, 3}};
         int[][] edges2 = {{0, 1}, {1, 2}, {2, 0}};
         System.out.println(validPath(6, edges1, 0, 5));
-
     }
 
 

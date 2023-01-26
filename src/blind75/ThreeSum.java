@@ -13,7 +13,7 @@ public class ThreeSum {
     public static List<List<Integer>> threeSum(int[] nums) {
 
         // My Solution :
-        // Beats 9% Time / 5% Memory
+        // O(n*n) time
         List<List<Integer>> res = new LinkedList<>();
 
         Arrays.sort(nums);

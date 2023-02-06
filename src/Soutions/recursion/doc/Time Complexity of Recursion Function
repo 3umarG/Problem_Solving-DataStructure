@@ -1,0 +1,43 @@
+Given a recursion algorithm, its time complexity
+
+O(T) is typically the product of the number of recursion invocations (denoted as R)
+ and the time complexity of calculation (denoted as O(s))
+ that incurs along with each recursion call:
+
+O(T)=R∗O(s)
+
+عدد مرات استدعاء ال recursive function * ال Time Complexity الخاص بكل single fun.
+
+EXAMPLE :
+O(printReverse)= n ∗ O(1) = O(n).
+: n = length of the string .
+
+
+- it is rarely the case that the number of recursion calls happens to be linear to the size of input.
+- من النادر ان يكون حساب ال recursion function بشكل خطي ..
+
+س/ طيب بيكون على اساس ايه ؟؟؟
+-- بيتم حسابها عن طريق مايسمى بال Execution Tree
+
+
+** Execution Tree :
+is a tree that is used to denote the execution flow of a recursive function in particular.
+Each node in the tree represents an invocation of the recursive function.
+Therefore, the total number of nodes in the tree corresponds to the number of recursion calls during the execution.
+
+** معلومة مهمة فشخ :
+The execution tree of a recursive function would form an (n-ary tree) .
+with n as the number of times recursion appears in the recurrence relation.
+
+ex: fib(n) = fib(n-1) + fin(n-2) ===> 2-ary Tree ===> Binary Tree
+
+SO ===> In a full binary tree with n levels, the total number of nodes would be 2^n - 1 = 2^n
+
+
+MEMOIZATION & Time Complexity :
+caching and reusing the intermediate results, memoization can greatly reduce the number of recursion calls...
+i.e. reducing the number of branches in the execution tree.
+-- We are assured that the calculation for each Fibonacci number would occur only once
+
+ ال Memoization بيضمنلي ان عدد مرات استدعاء rec fun هتكون n بسبب انه بيحفظ نتائج عمليات الاستدعاء السابقة
+ وده ي الاخر بيقلل من تفرعات ال Tree وبينتج عنها O(n) Time Complexity

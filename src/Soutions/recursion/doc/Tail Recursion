@@ -1,0 +1,53 @@
+
+
+Tail recursion :
+- is a recursion where the recursive call is the final instruction in the recursion function.
+- And there should be only one recursive call in the function.
+
+public class Main {
+
+  private static int helper_non_tail_recursion(int start, int [] ls) {
+    if (start >= ls.length) {
+      return 0;
+    }
+    // not a tail recursion because it does some computation after the recursive call returned.
+    return *** ls[start] *** + helper_non_tail_recursion(start+1, ls);
+  }
+
+  public static int sum_non_tail_recursion(int [] ls) {
+    if (ls == null || ls.length == 0) {
+      return 0;
+    }
+    return helper_non_tail_recursion(0, ls);
+  }
+
+  //---------------------------------------------
+
+  private static int helper_tail_recursion(int start, int [] ls, int acc) {
+    if (start >= ls.length) {
+      return acc;
+    }
+    // this is a tail recursion because the final instruction is the recursive call.
+    return helper_tail_recursion(start+1, ls, acc+ls[start]);
+  }
+
+  public static int sum_tail_recursion(int [] ls) {
+    if (ls == null || ls.length == 0) {
+      return 0;
+    }
+    return helper_tail_recursion(0, ls, 0);
+  }
+}
+
+
+
+** What's the advantage of using Tail Recursion ???
+- The benefit of having tail recursion is that it could avoid the accumulation of stack overheads during the recursive calls,
+ since the system could reuse a fixed amount space in the stack for each recursive call.
+
+ - بمعنى ان لما بيكون عندي rec fun واحدة بس ومش معاها اي ..
+ expressions تانية او حسابات محتاجة تتحسب فال stack الخاص بال recursive function بيستغل مساحة واحدة ثابتة فقط لكل
+ ال recursive function بالتوالي ...
+
+ - اما لو كان عندي expressions اخرى بجناب ال rec fun ف ال stack ..
+ هيضطر انه يعمل لكل function مكان مخصص بيها عشان يجمع عليه ال expression الموجود في النهاية وده من شأنه يزيد من المساحة

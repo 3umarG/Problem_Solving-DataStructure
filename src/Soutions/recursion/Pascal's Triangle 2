@@ -1,0 +1,24 @@
+class Solution {
+    public List<Integer> getRow(int row) {
+
+        // Base Case : First Row index = 0
+        if(row == 0){
+            List<Integer> l = new ArrayList();
+            l.add(1);
+            return l;
+        }
+
+        List<Integer> prevRow = getRow(row - 1);
+        List<Integer> currRow = new ArrayList();
+
+        currRow.add(1);
+        for(int i=0 ; i< prevRow.size()-1 ; i++){
+            currRow.add( prevRow.get(i) + prevRow.get(i+1) );
+        }
+
+        currRow.add(1);
+
+        return currRow;
+    }
+
+}

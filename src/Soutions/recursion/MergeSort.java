@@ -7,8 +7,17 @@ public class MergeSort {
         System.out.println(Arrays.toString(sortArray(new int[]{5,4,3,2,1})));
     }
 
+    /*
+    *
+    * Pros:
+    * O(n*logn) ===> for all time complexities
+    *
+    * Cons:
+    * Take O(n) space to store the sub arrays and the new one after combining
+     */
+
     public static int[] sortArray(int[] nums) {
-        // Base Case
+        // Base Case : Only one element or empty arr.
         if (nums.length <= 1) return nums;
 
         // Center Position to Crop the array and divide it from

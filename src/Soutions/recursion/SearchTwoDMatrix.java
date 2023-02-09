@@ -11,56 +11,32 @@ public class SearchTwoDMatrix {
         }, 32));
     }
 
+    /*
+    *
+    * Start From Right-Top
+    * if the target less than the current ===> back in column
+    * if the target greater than the current ===> go deep in row
+     */
+
     public static boolean searchMatrix(int[][] matrix, int target) {
-        return find(
-                0,
-                matrix.length - 1,
-                0,
-                matrix[0].length - 1,
-                target,
-                 matrix);
+        if (matrix.length == 0) return false;
+        if (matrix[0].length == 0) return false;
+
+        return findRec(matrix, 0, matrix[0].length - 1, target);
     }
 
-    public static boolean find(int startRow,
-                               int endRow,
-                               int startCol,
-                               int endCol,
-                               double target,
-                               int[][] nums) {
+    private static boolean findRec(int[][] matrix, int row, int column, int target) {
+        // Out of Bound
+        if (row >= matrix.length || column < 0) return false;
 
-        // Base Case : 2X2 Matrix || One Element
-        if (endRow - startRow <= 1 && endCol - startCol <= 1) {
-            for (int i = startRow; i <= endRow; i++) {
-                for (int j = startCol; j <= endCol; j++) {
-                    if (nums[i][j] == target) {
-                        return true;
-                    }
-                }
-            }
-            // Not Found
-            return false;
-        }
+        // Found
+        if (matrix[row][column] == target) return true;
 
-//l + (r - l) / 2
-        int pivotRow = startRow + (endRow - startRow) / 2;
-        int pivotCol = startCol + (endCol - startCol) / 2;
-
-        // Second Base Case : Pivot
-        if (nums[pivotRow][pivotCol] == target) return true;
-
-        boolean isFindFirstMatrix = find(0, pivotRow, pivotCol, endCol, target, nums);
-        boolean isFindSecondMatrix = find(pivotRow, endRow, 0, pivotCol, target, nums);
-
-        boolean isFindThirdMatrix;
-        if (target > nums[pivotRow][pivotCol]) {
-            // Discard Top Left Sub Matrix
-            isFindThirdMatrix = find(pivotRow, endRow, pivotCol, endCol, target, nums);
+        if (target > matrix[row][column]) {
+            return findRec(matrix, row + 1, column, target);
         } else {
-            // Discard bottom right sub matrix
-            isFindThirdMatrix = find(0, pivotRow, 0, pivotCol, target, nums);
+            return findRec(matrix, row, column - 1, target);
         }
-
-        return isFindFirstMatrix || isFindSecondMatrix || isFindThirdMatrix;
     }
 
 
